@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
-import ListItem from "../components/ListItem";
+import { FlatList, StyleSheet } from "react-native";
 import Screen from "../components/Screen";
-import ListItemSeparator from "../components/ListItemSeparator";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
+import {
+  ListItem,
+  ListItemDeleteAction,
+  ListItemSeparator,
+} from "../components/lists";
 
 const initialMessages = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
+    title: "徐山",
+    description: "你好",
     image: require("../assets/mosh.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "申江锋",
+    description: "这是新的SVN地址，http://123.234.123.22/",
     image: require("../assets/mosh.jpg"),
   },
 ];

@@ -16,9 +16,10 @@ import LoginScreen from "./app/screens/LoginScreen";
 import ImagePickerExample from "./app/screens/ImageTest";
 import ListEditingScreen from "./app/screens/ListEditingScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
+import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
-  return <ListingsScreen />;
+  return <ListEditingScreen />;
 }
 
 const styles = StyleSheet.create({

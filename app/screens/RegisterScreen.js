@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
 
 function RegisterScreen() {
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
@@ -49,5 +49,11 @@ function RegisterScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    padding: 10,
+  },
+});
 
 export default RegisterScreen;
