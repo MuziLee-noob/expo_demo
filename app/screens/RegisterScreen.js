@@ -44,7 +44,7 @@ function RegisterScreen() {
           secureTextEntry
           textContentType="password"
         />
-        <SubmitButton title="登录" />
+        <SubmitButton title="注册" />
       </AppForm>
     </Screen>
   );

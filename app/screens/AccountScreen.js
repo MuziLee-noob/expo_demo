@@ -1,10 +1,11 @@
 import React from "react";
 import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/lists/ListItem";
 import { View, StyleSheet, FlatList } from "react-native";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
-import ListItemSeparator from "../components/ListItemSeparator";
+import ListItemSeparator from "../components/lists/ListItemSeparator";
+import routes from "../navigation/routes";
 
 const menuItem = [
   {
@@ -20,10 +21,11 @@ const menuItem = [
       name: "email",
       backgroundColor: colors.secondary,
     },
+    targetScreen: routes.MESSAGES,
   },
 ];
 
-function AccountScreen() {
+function AccountScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -38,7 +40,7 @@ function AccountScreen() {
           data={menuItem}
           keyExtractor={(item) => item.title}
           ItemSeparatorComponent={ListItemSeparator}
-          renderItem={({ item }) =>
+          renderItem={({ item }) => (
             <ListItem
               title={item.title}
               IconComponent={
@@ -47,15 +49,14 @@ function AccountScreen() {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
-          }
+          )}
         />
       </View>
       <ListItem
         title="Log Out"
-        IconComponent={
-          <Icon name="logout" backgroundColor="#ffe66d"/>
-        }
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
   );
@@ -63,7 +64,7 @@ function AccountScreen() {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: colors.light
+    backgroundColor: colors.light,
   },
   container: {
     marginVertical: 10,

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
+import * as Location from "expo-location";
 
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/form";
 import AppFormPicker from "../components/form/AppFormPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
+import FormImagePicker from "../components/form/FormImagePicker";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   category: Yup.object().required().nullable().label("Category"),
   description: Yup.string().label("Description"),
+  images: Yup.array().min(1, "请选择至少一张图片"),
 });
 
 const categories = [
@@ -72,6 +76,8 @@ const categories = [
 ];
 
 function ListEditingScreen() {
+  const location = useLocation();
+
   return (
     <Screen style={styles.screen}>
       <AppForm
@@ -80,10 +86,12 @@ function ListEditingScreen() {
           price: "",
           category: null,
           description: "",
+          images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(location)}
         validationSchema={validationSchema}
       >
+        <FormImagePicker name="images" />
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
